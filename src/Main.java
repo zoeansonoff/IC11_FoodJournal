@@ -76,7 +76,30 @@ public class Main {
                     }
                     break;
                 case 2:
+                    try {
+                        System.out.print("What is the name of the produce eaten?");
+                        name = keyboard.nextLine();
+                        System.out.print("How many calories was it?");
+                        calories = keyboard.nextInt();
+                        System.out.print("Enter (1) for organic or (2) for non-organic: ");
+                        type = keyboard.nextInt();
+                        // Clear the buffer
+                        keyboard.nextLine();
+                        // Check for valid type
+                        if (type != 1 && type != 2)
+                          throw new IllegalArgumentException("Invalid produce type.");
+
+                        System.out.print("Enter the amount of carbs in grams: ");
+                        int carbs = keyboard.nextInt();
+                        // Clear the buffer
+                        keyboard.nextLine();
+                        // Create produce object and add to array
+                        journal[count++] = new Produce(name, calories, type, carbs);
+                    } catch (IllegalArgumentException e) {
+                    System.err.println(e.getMessage());
+                    }
                     break;
+
                 case 3:
                     System.out.println("~~~Food Recorded in Journal~~~");
                     for (int i = 0; i < count; i++) {
